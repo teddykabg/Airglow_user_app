@@ -134,6 +134,7 @@ public class LoginFragment extends Fragment {
     }
     private static String token;
     private static boolean mState=false;
+
     public void login(String mUsername,String mPassword){
         Login mLogin= new Login(mUsername,mPassword);
         Call<User> call= userClient.login(mLogin);

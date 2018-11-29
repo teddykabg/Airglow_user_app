@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.fragment.app.Fragment;
+import me.tremor.Airglow_user.models.Registration;
+
 import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Fragment representing the Registration screen
@@ -119,10 +122,10 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
-    /*
-        In reality, this will have more complex logic including, but not limited to, actual
-        authentication of the username and password.
-     */
+    private void registration(String name, String surname, Date date_of_birth,String sex,String password,String email_cellphone){
+        Registration mRegistration=new Registration(name,surname, date_of_birth,sex,password,email_cellphone);
+
+    }
 
     private boolean isPasswordValid(@Nullable Editable text) {
         String mText=text.toString();
