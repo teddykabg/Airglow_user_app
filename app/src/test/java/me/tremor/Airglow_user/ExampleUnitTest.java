@@ -1,4 +1,4 @@
-package me.tremor.tremor_user;
+package me.tremor.Airglow_user;
 
 import org.junit.Test;
 

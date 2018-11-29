@@ -1,7 +1,7 @@
-package me.tremor.tremor_user.service;
+package me.tremor.Airglow_user.service;
 
-import me.tremor.tremor_user.models.Login;
-import me.tremor.tremor_user.models.User;
+import me.tremor.Airglow_user.models.Login;
+import me.tremor.Airglow_user.models.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -1,7 +1,6 @@
-package me.tremor.tremor_user;
+package me.tremor.Airglow_user;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,23 +8,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.fragment.app.Fragment;
 import android.text.Editable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Fragment representing the Registration screen

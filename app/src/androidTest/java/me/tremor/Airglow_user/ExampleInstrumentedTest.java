@@ -1,4 +1,4 @@
-package me.tremor.tremor_user;
+package me.tremor.Airglow_user;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

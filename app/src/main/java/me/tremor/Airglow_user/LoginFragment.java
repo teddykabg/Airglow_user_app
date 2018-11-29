@@ -1,4 +1,4 @@
-package me.tremor.tremor_user;
+package me.tremor.Airglow_user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import me.tremor.tremor_user.models.Login;
-import me.tremor.tremor_user.models.User;
-import me.tremor.tremor_user.service.UserClient;
+import me.tremor.Airglow_user.models.Login;
+import me.tremor.Airglow_user.models.User;
+import me.tremor.Airglow_user.service.UserClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

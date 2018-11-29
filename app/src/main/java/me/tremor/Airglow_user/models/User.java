@@ -1,4 +1,4 @@
-package me.tremor.tremor_user.models;
+package me.tremor.Airglow_user.models;
 
 public class User {
     private int id;

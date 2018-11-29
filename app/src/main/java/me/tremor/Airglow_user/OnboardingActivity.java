@@ -1,35 +1,43 @@
-package me.tremor.tremor_user;
+package me.tremor.Airglow_user;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 /**
- * Activity representing the Main activity.
+ * Activity representing the Onboarding screens.
  */
-public class MainActivity extends AppCompatActivity implements NavigationHost{
+
+public class OnboardingActivity extends AppCompatActivity implements NavigationHost {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_onboarding);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.main_container, new TransactionFragment())
+                    .add(R.id.container, new LoginFragment())
                     .commit();
         }
 
     }
 
-    @Override
+    /**
+     * Navigate to the given fragment.
+     *
+     * @param fragment       Fragment to navigate to.
+     * @param addToBackstack Whether or not the current fragment should be added to the backstack.
+     */
+   @Override
     public void navigateTo(Fragment fragment, boolean addToBackstack) {
         FragmentTransaction transaction =
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_container, fragment);
+                        .replace(R.id.container, fragment);
 
         if (addToBackstack) {
             transaction.addToBackStack(null);
