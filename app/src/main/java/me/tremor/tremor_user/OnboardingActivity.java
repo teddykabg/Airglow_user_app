@@ -3,7 +3,13 @@ package me.tremor.tremor_user;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
+
+/**
+ * Activity representing the Onboarding screens.
+ */
 
 public class OnboardingActivity extends AppCompatActivity implements NavigationHost {
 
@@ -18,6 +24,7 @@ public class OnboardingActivity extends AppCompatActivity implements NavigationH
                     .add(R.id.container, new LoginFragment())
                     .commit();
         }
+
     }
 
     /**

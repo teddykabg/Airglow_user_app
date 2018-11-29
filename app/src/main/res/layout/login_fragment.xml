@@ -32,6 +32,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/username_text_input"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -69,6 +70,15 @@
             android:layout_alignParentRight="true"
             android:text="@string/user_signin"
                 android:backgroundTint="@color/colorAccent"/>
+            <Button
+                android:id="@+id/signup_button"
+                android:layout_width="match_parent"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/user_signup"
+                android:backgroundTint="@color/colorSignUp"/>
 
 
 

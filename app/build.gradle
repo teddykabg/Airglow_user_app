@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+android.defaultConfig.manifestPlaceholders = ['appAuthRedirectScheme': 'https']
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -24,7 +24,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    implementation 'com.stripe:stripe-android:6.1.2'
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
+

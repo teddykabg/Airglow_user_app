@@ -12,4 +12,15 @@
     <string name="lastname">lastname</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="error_username">username not valid</string>
+    <string name="date_of_birth">choose date</string>
+    <string name="hint_repassword">confirm password</string>
+    <string name="email_or_cell">Email or Cellphone</string>
+    <string name="confirm">Confirm</string>
+    <string name="user_Transaction">Transaction</string>
+    <string name="mail_off">Mail off</string>
+    <string name="mail_on">Mail on</string>
+    <string name="Phone_off">Phone off</string>
+    <string name="Phone_on">Phone on</string>
+    <string name="user_acquista">Acquista</string>
 </resources>
