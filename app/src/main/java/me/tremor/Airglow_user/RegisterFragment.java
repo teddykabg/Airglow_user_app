@@ -74,6 +74,7 @@ public class RegisterFragment extends Fragment {
                     rePasswordTextInput.setError(null); // Clear the error
                     //((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
                 }
+
             }
         });
 
@@ -122,8 +123,8 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
-    private void registration(String name, String surname, Date date_of_birth,String sex,String password,String email_cellphone){
-        Registration mRegistration=new Registration(name,surname, date_of_birth,sex,password,email_cellphone);
+    private void registration(String first_name, String last_name, Date date_of_birth,String sex,String password,String email_cellphone){
+        Registration mRegistration=new Registration(first_name,last_name, date_of_birth,sex,email_cellphone,password);
 
     }
 
@@ -131,5 +132,19 @@ public class RegisterFragment extends Fragment {
         String mText=text.toString();
         return text != null && text.length() >= 8 && mText.matches(".*\\d+.*");
     }
+
+    private boolean isDateValid(@Nullable Editable text) {
+
+        return text != null ;
+    }
+    private boolean isNameValid(@Nullable Editable text) {
+
+        return text != null ;
+    }
+    private boolean isLastNameValid(@Nullable Editable text) {
+
+        return text != null ;
+    }
+
 
 }
