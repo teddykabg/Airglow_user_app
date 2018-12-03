@@ -1,4 +1,4 @@
-package me.tremor.Airglow_user;
+package me.tremor.Airglow_user.UI;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -16,13 +16,12 @@ import com.stripe.android.view.CardInputWidget;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import me.tremor.Airglow_user.R;
 
 /**
  * Fragment representing the stripe form
  */
 public class StripeFragment extends Fragment {
-
-    DatePickerDialog.OnDateSetListener mDateListener;
 
     @Override
     public View onCreateView(

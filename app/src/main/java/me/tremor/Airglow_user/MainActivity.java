@@ -3,8 +3,12 @@ package me.tremor.Airglow_user;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import me.tremor.Airglow_user.UI.TransactionFragment;
 
 import android.os.Bundle;
+
+import com.facebook.AccessToken;
+
 /**
  * Activity representing the Main activity.
  */
@@ -14,6 +18,9 @@ public class MainActivity extends AppCompatActivity implements NavigationHost{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (AccessToken.getCurrentAccessToken() == null) {
+            //vai al fragment di login
+        }
 
         if (savedInstanceState == null) {
             getSupportFragmentManager()

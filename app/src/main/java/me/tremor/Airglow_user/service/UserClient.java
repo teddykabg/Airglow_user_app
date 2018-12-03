@@ -1,7 +1,8 @@
 package me.tremor.Airglow_user.service;
 
 import me.tremor.Airglow_user.models.Login;
-import me.tremor.Airglow_user.models.Registration;
+import me.tremor.Airglow_user.models.Registration_email;
+import me.tremor.Airglow_user.models.Registration_phone;
 import me.tremor.Airglow_user.models.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -17,6 +18,8 @@ public interface UserClient {
     Call<User> login(@Body Login login);
     @GET("secretinfo")
     Call<ResponseBody> getSecret(@Header("Authorization")String authToken);
-    @POST("users")//registration
-    Call<User> registration(@Body Registration registration);
+    @POST("users/")//registrationEmail
+    Call<User> registration(@Body Registration_email registrationEmail);
+    @POST("users/")//registrationEmail
+    Call<User> registration(@Body Registration_phone registrationPhone);
 }

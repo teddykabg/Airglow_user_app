@@ -3,7 +3,9 @@ package me.tremor.Airglow_user;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import me.tremor.Airglow_user.UI.LoginFragment;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -11,7 +13,9 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
-import com.facebook.CallbackManager;
+import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,11 +25,12 @@ import java.security.NoSuchAlgorithmException;
  */
 
 public class OnboardingActivity extends AppCompatActivity implements NavigationHost {
-
+    PackageInfo info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager()
@@ -34,7 +39,6 @@ public class OnboardingActivity extends AppCompatActivity implements NavigationH
                     .commit();
         }
     }
-
 
 
     /**

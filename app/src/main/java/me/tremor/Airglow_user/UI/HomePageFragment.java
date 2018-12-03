@@ -1,4 +1,4 @@
-package me.tremor.Airglow_user;
+package me.tremor.Airglow_user.UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,24 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import me.tremor.Airglow_user.R;
 
 /**
  * Fragment representing the Transaction screen.
  */
-public class TransactionFragment extends Fragment {
+public class HomePageFragment extends Fragment {
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.transaction_fragment, container, false);
-
-        Button signUpButton = view.findViewById(R.id.signup_button);
+        View view = inflater.inflate(R.layout.homepage_fragment, container, false);
 
 
 
 
-        signUpButton.setOnClickListener(new View.OnClickListener(){
+
+
+       /* buyButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -38,7 +39,7 @@ public class TransactionFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
-        });
+        });*/
         return view;
     }
 

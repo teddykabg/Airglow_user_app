@@ -29,7 +29,14 @@
     <string name="login_unsuccesful">Unsuccesful login</string>
     <string name="registration_succesful">Registration succesful</string>
     <string name="registration_unsuccesful">Registration unsuccesful</string>
-    <string name="facebook_app_id">2199869353570130</string>
-    <string name="fb_login_protocol_scheme">fb2199869353570130</string>
+    <string name="facebook_app_id">225691825012986</string>
+    <string name="fb_login_protocol_scheme">fb225691825012986</string>
+    <string name="event_title">Will be a title</string>
+    <string name="success">Success</string>
+    <string name="cancel">Mai fatta</string>
+    <string name="error_email">email not valid</string>
+    <string name="error_date">date not valid</string>
+    <string name="insert_phone">phone</string>
+    <string name="insert_email">e-mail</string>
 
 </resources>
