@@ -23,4 +23,10 @@
     <string name="Phone_off">Phone off</string>
     <string name="Phone_on">Phone on</string>
     <string name="user_acquista">Acquista</string>
+    <string name="error_first_name">invalid First name</string>
+    <string name="error_last_name">invalid last name</string>
+    <string name="login_succesful">Succesful login</string>
+    <string name="login_unsuccesful">Unsuccesful login</string>
+    <string name="registration_succesful">Registration succesful</string>
+    <string name="registration_unsuccesful">Registration unsuccesful</string>
 </resources>

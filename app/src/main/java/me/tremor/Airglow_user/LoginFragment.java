@@ -133,7 +133,7 @@ public class LoginFragment extends Fragment {
         return text != null && text.length() >= 8;
     }
     private static String token;
-    private static boolean mState=false;
+    private static boolean mState=false;// stato login
 
     public void login(String mUsername,String mPassword){
         Login mLogin= new Login(mUsername,mPassword);
@@ -144,12 +144,12 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getActivity(),response.body().getToken(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),R.string.login_succesful,Toast.LENGTH_SHORT).show();
                     token=response.body().getToken();
                     mState=true;
 
                 }else{
-                    Toast.makeText(getActivity(),"Login non funzia",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),R.string.login_unsuccesful,Toast.LENGTH_SHORT).show();
                 }
             }
 

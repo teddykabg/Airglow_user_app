@@ -5,13 +5,13 @@ import java.util.Date;
 public class Registration {
     private String first_name;
     private String last_name;
-    private String sex;
-    private Date date_of_birth;
+    private char sex;
+    private String date_of_birth;
     private String email;
     private String phone_number;
     private String password;
 
-    public Registration(String name, String surname, Date date_of_birth, String sex,String password,String email_cellphone) {
+    public Registration(String name, String surname, String date_of_birth, char sex,String password,String email_cellphone) {
         this.first_name = name;
         this.last_name = surname;
         this.sex = sex;

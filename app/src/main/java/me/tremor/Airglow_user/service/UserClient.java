@@ -18,5 +18,5 @@ public interface UserClient {
     @GET("secretinfo")
     Call<ResponseBody> getSecret(@Header("Authorization")String authToken);
     @POST("users")//registration
-    Call<User> login(@Body Registration registration);
+    Call<User> registration(@Body Registration registration);
 }
