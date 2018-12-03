@@ -29,4 +29,7 @@
     <string name="login_unsuccesful">Unsuccesful login</string>
     <string name="registration_succesful">Registration succesful</string>
     <string name="registration_unsuccesful">Registration unsuccesful</string>
+    <string name="facebook_app_id">2199869353570130</string>
+    <string name="fb_login_protocol_scheme">fb2199869353570130</string>
+
 </resources>

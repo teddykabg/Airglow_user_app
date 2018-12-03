@@ -4,7 +4,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
+
+import com.facebook.CallbackManager;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Activity representing the Onboarding screens.
@@ -23,8 +33,9 @@ public class OnboardingActivity extends AppCompatActivity implements NavigationH
                     .add(R.id.container, new LoginFragment())
                     .commit();
         }
-
     }
+
+
 
     /**
      * Navigate to the given fragment.

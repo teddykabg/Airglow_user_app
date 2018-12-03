@@ -1,10 +1,19 @@
 package me.tremor.Airglow_user;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.fragment.app.Fragment;
@@ -28,16 +37,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.net.URL;
+
 /**
  * Fragment representing the login screen.
  */
 public class LoginFragment extends Fragment {
     private boolean isValidUsername;
     private boolean isValidPassword;
+    private ProgressDialog mProgress;
     Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://api.airglow.me:5000/v1/")
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit mRetrofit= builder.build();
     UserClient userClient= mRetrofit.create(UserClient.class);
+
+    CallbackManager callbackManager;
+
+
 
     @Override
     public View onCreateView(
@@ -49,9 +67,70 @@ public class LoginFragment extends Fragment {
         final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
         Button nextButton = view.findViewById(R.id.next_button);
         Button signUpButton = view.findViewById(R.id.signup_button);
+        LoginButton fbButton =view.findViewById(R.id.fb_login);
         isValidPassword=false;
         isValidUsername=false;
 
+
+
+        fbButton = (LoginButton) view.findViewById(R.id.fb_login);
+        fbButton.setReadPermissions("email");//"public_profile","user_birthday","user_friends"
+        // If using in a fragment
+        fbButton.setFragment(this);
+        callbackManager = CallbackManager.Factory.create();
+
+        // Callback registration
+        fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            /*Se l'accesso viene effettuato correttamente, il parametro LoginResult
+             otterrà un nuovo AccessToken e le autorizzazioni concesse o negate di recente.*/
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                mProgress=new ProgressDialog(getActivity());
+                mProgress.setMessage("Retrieving data...");
+                mProgress.show();
+
+                String accessToken = loginResult.getAccessToken().getToken();
+
+                GraphRequest request= GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        mProgress.dismiss();
+                        getFacebookData(object);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+
+
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        // App code
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
         // Set an error if the password is less than 8 characters.
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +197,12 @@ public class LoginFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
         return view;
+    }
+
+    private void getFacebookData(JSONObject object) {
+
     }
 
     /*
