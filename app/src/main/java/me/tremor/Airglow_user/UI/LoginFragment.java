@@ -1,13 +1,16 @@
 package me.tremor.Airglow_user.UI;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bottlerocketstudios.vault.SharedPreferenceVault;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 
@@ -22,6 +25,8 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.q42.qlassified.Qlassified;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -31,6 +36,7 @@ import me.tremor.Airglow_user.R;
 import me.tremor.Airglow_user.models.Login;
 import me.tremor.Airglow_user.models.User;
 import me.tremor.Airglow_user.service.UserClient;
+import me.tremor.Airglow_user.vault.VaultLocator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,11 +68,12 @@ import static android.app.Activity.RESULT_OK;
  * Fragment representing the login screen.
  */
 public class LoginFragment extends Fragment {
-    private boolean isValidUsername;
-    private boolean isValidPassword;
     private ProgressDialog mProgress;
     private static final String EMAIL = "email";
-    Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://api.airglow.me:5000/v1/")
+    private static final String PREF_SECRET = "token";
+    private String CIELO="http://api.airglow.me:5000/v1/";
+    private String TERRA="http://192.168.1.35:5000/v1/";
+    Retrofit.Builder builder=new Retrofit.Builder().baseUrl(CIELO)
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit mRetrofit= builder.build();
     UserClient userClient= mRetrofit.create(UserClient.class);
@@ -78,6 +85,29 @@ public class LoginFragment extends Fragment {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    protected SharedPreferenceVault getVault() {
+        return VaultLocator.getAutomaticallyKeyedVault();
+    }
+    /*protected String loadSecret() {
+        final SharedPreferenceVault sharedPreferenceVault = getVault();
+        if (sharedPreferenceVault != null) {
+            String secretValue = null;
+            return secretValue = sharedPreferenceVault.getString(PREF_SECRET, null);
+        }
+        else{
+            return  null;
+        }
+    }*/
+
+    protected void saveSecret(String Token) {
+        String secretValue = Token;
+
+        final SharedPreferenceVault sharedPreferenceVault = getVault();
+        if (sharedPreferenceVault != null) {
+                sharedPreferenceVault.edit().putString(PREF_SECRET, secretValue).apply();
+        }
+    }
+
 
     @Override
     public View onCreateView(
@@ -85,19 +115,21 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.login_fragment, container, false);
         final TextInputLayout passwordTextInput = view.findViewById(R.id.password_text_input);
-        final TextInputEditText usernameTextInput = view.findViewById(R.id.username_text_input);
+        final TextInputEditText usernameEditInput = view.findViewById(R.id.username_text_input);
         final TextInputEditText passwordEditText = view.findViewById(R.id.password_edit_text);
+
         Button nextButton = view.findViewById(R.id.next_button);
         Button signUpButton = view.findViewById(R.id.signup_button);
         LoginButton fbButton =view.findViewById(R.id.fb_login);
-        isValidPassword=false;
-        isValidUsername=false;
-
-
 
         fbButton = (LoginButton) view.findViewById(R.id.fb_login);
         mCallbackManager = CallbackManager.Factory.create();
         fbButton.setReadPermissions(Arrays.asList(EMAIL));
+
+        Qlassified.Service.start(view.getContext());
+
+
+
 
         fbButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -129,25 +161,7 @@ public class LoginFragment extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isUsernameValid(usernameTextInput.getText())) {
-                    usernameTextInput.setError(getString(R.string.error_username));
-                    isValidUsername=false;
-                }
-                else{
-                    usernameTextInput.setError(null);
-                    isValidUsername=true;
-                }
-                if (!isPasswordValid(passwordEditText.getText())) {
-                    passwordTextInput.setError(getString(R.string.error_password));
-                    isValidPassword=false;
-                } else {
-                    passwordTextInput.setError(null);// Clear the error
-                    isValidPassword=true;
-                    //((NavigationHost) getActivity()).navigateTo(new ProductGridFragment(), false); // Navigate to the next Fragment
-                }
-
-                if(isValidPassword==true && isValidUsername==true) {
-                    login(usernameTextInput.getText().toString(),passwordEditText.getText().toString());
+                    login(usernameEditInput.getText().toString(),passwordEditText.getText().toString());
                     if(mState==true) {
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         ((OnboardingActivity) getActivity()).startActivity(intent);
@@ -156,40 +170,8 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(getActivity(),"Non autorizzato",Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
         });
 
-        // Clear the error once more than 8 characters are typed.
-        passwordEditText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (isPasswordValid(passwordEditText.getText())) {
-                    passwordTextInput.setError(null); //Clear the error
-                }
-                return false;
-            }
-        });
-        // Clear
-      usernameTextInput.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (isUsernameValid(usernameTextInput.getText())) {
-                    usernameTextInput.setError(null);
-                }
-                return false;
-            }
-        });
-        signUpButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new RegisterFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
 
         return view;
     }
@@ -208,14 +190,6 @@ public class LoginFragment extends Fragment {
         In reality, this will have more complex logic including, but not limited to, actual
         authentication of the username and password.
      */
-    private boolean isPasswordValid(@Nullable Editable text) {
-        String mText=text.toString();
-        return text != null /*&& text.length() >= 8&& mText.matches(".*\\d+.*"*)*/;
-    }
-    private boolean isUsernameValid(@Nullable Editable text) {
-        return text != null && text.length() >= 8;
-    }
-    private static String token;
     private static boolean mState=false;// stato login
 
     public void login(String mUsername,String mPassword){
@@ -228,7 +202,7 @@ public class LoginFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getActivity(),R.string.login_succesful,Toast.LENGTH_SHORT).show();
-                    token=response.body().getToken();
+                    saveSecret(response.body().getToken());
                     mState=true;
 
                 }else{
@@ -242,5 +216,6 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+
 
 }

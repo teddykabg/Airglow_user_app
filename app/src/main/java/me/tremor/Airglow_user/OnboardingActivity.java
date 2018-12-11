@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import me.tremor.Airglow_user.UI.LoginFragment;
+import me.tremor.Airglow_user.vault.VaultLocator;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -30,6 +31,8 @@ public class OnboardingActivity extends AppCompatActivity implements NavigationH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        VaultLocator.initializeVaults(this);
 
 
         if (savedInstanceState == null) {
