@@ -1,4 +1,4 @@
-package me.tremor.Airglow_user;
+package me.tremor.Airglow_user.service;
 
 import androidx.fragment.app.Fragment;
 

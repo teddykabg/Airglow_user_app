@@ -11,12 +11,10 @@ import me.tremor.Airglow_user.R;
 import me.tremor.Airglow_user.models.Registration_email;
 import me.tremor.Airglow_user.models.Registration_phone;
 import me.tremor.Airglow_user.models.User;
-import me.tremor.Airglow_user.service.UserClient;
+import me.tremor.Airglow_user.service.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -37,10 +35,10 @@ public class RegisterFragment extends Fragment {
 
     DatePickerDialog.OnDateSetListener mDateListener;
     char mSex;
-    Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://192.168.1.35:5000/v1/")
+    /*Retrofit.Builder builder=new Retrofit.Builder().baseUrl("http://192.168.1.35:5000/v1/")
             .addConverterFactory(GsonConverterFactory.create());
     Retrofit mRetrofit= builder.build();
-    UserClient userClient= mRetrofit.create(UserClient.class);
+    UserClient userClient= mRetrofit.create(UserClient.class);*/
 
     @Override
     public View onCreateView(
@@ -227,7 +225,7 @@ public class RegisterFragment extends Fragment {
     private void registration(String first_name, String last_name, String date_of_birth,char sex,String password,String email,String phone){
         if(email.length()>0) {
             Registration_email mRegistrationEmail = new Registration_email(first_name, last_name, date_of_birth, sex, password, email);
-            Call<User> call = userClient.registration(mRegistrationEmail);
+            Call<User> call = RetrofitClient.getInsance().getApi().registration(mRegistrationEmail);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
@@ -247,7 +245,7 @@ public class RegisterFragment extends Fragment {
         }
         else{
             Registration_phone mRegistrationPhone = new Registration_phone(first_name, last_name, date_of_birth, sex, password, phone);
-            Call<User> call = userClient.registration(mRegistrationPhone);
+            Call<User> call = RetrofitClient.getInsance().getApi().registration(mRegistrationPhone);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

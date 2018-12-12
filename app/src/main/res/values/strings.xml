@@ -38,5 +38,9 @@
     <string name="error_date">date not valid</string>
     <string name="insert_phone">phone</string>
     <string name="insert_email">e-mail</string>
+    <string name="acquista">Acquista</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

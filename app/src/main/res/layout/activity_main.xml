@@ -14,15 +14,29 @@
         android:text="Infinite"
         />
 
-   <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_feed"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/my_menu"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"
+            app:elevation="10dp"
+            app:menu="@menu/bottom_navigation_menu">
 
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_feed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 
 
 </LinearLayout>
