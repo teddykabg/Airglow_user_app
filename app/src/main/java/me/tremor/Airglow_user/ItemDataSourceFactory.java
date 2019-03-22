@@ -12,7 +12,7 @@ public class ItemDataSourceFactory extends DataSource.Factory {
 
     @Override
     public DataSource create() {
-        ItemDataSource itemDataSource = new ItemDataSource();
+        ItemDataSource itemDataSource = new ItemDataSource()/*new EventDataSource()*/;
         itemLiveDataSource.postValue(itemDataSource);
         return itemDataSource;
     }

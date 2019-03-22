@@ -1,84 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UI.ModalityFragment">
+
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".UI.ModalityFragment"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:padding="24dp"
         android:paddingTop="16dp">
 
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_items"
             android:layout_width="match_parent"
-            android:id="@+id/modality1"
-            android:layout_height="20sp"
-            app:cardBackgroundColor="@color/browser_actions_bg_grey"
-            android:layout_marginLeft="@dimen/mtrl_card_spacing"
-            android:layout_marginTop="@dimen/mtrl_card_spacing"
-            android:layout_marginRight="@dimen/mtrl_card_spacing"
-            app:cardCornerRadius="2dp"
+            android:layout_height="match_parent">
 
-            android:minHeight="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/modality1_text"
-                android:text="Modalità2"
-                android:textColor="#000"
-                android:textAlignment="center"/>
 
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="match_parent"
-            android:id="@+id/modality2"
-            android:layout_height="20sp"
-            app:cardBackgroundColor="@color/browser_actions_bg_grey"
-            android:layout_marginLeft="@dimen/mtrl_card_spacing"
-            android:layout_marginTop="@dimen/mtrl_card_spacing"
-            android:layout_marginRight="@dimen/mtrl_card_spacing"
-            app:cardCornerRadius="2dp"
-
-            android:minHeight="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/modality2_text"
-                android:text="Modalità1"
-                android:textColor="#000"
-                android:textAlignment="center"/>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.MaterialComponents.CardView"
-            android:layout_width="match_parent"
-            android:id="@+id/modality3"
-            android:layout_height="20sp"
-            app:cardBackgroundColor="@color/browser_actions_bg_grey"
-            android:layout_marginLeft="@dimen/mtrl_card_spacing"
-            android:layout_marginTop="@dimen/mtrl_card_spacing"
-            android:layout_marginRight="@dimen/mtrl_card_spacing"
-            app:cardCornerRadius="2dp"
-
-            android:minHeight="30dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="modalità3"
-                android:id="@+id/modality3_text"
-                android:textColor="#000"
-                android:textAlignment="center"/>
-
-        </com.google.android.material.card.MaterialCardView>
-
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
-</ScrollView>

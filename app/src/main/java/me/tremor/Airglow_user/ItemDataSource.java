@@ -25,7 +25,8 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
     private static final String FIRST_PAGE = "1";
     private static final String SITE_NAME = "stackoverflow";
     private static RetrofitClient mInstance;
-    private Retrofit retrofit = new Retrofit.Builder().baseUrl("http://api.airglow.me:5000/v1/")
+    private String TERRA="http://192.168.1.35:5000/v1/";
+    private Retrofit retrofit = new Retrofit.Builder().baseUrl(/*"http://api.airglow.me:5000/v1/"*/TERRA)
                 .addConverterFactory(GsonConverterFactory.create())
             .build();
     UserClient userClient = retrofit.create(UserClient.class);
@@ -34,7 +35,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, Item> callback) {
 
-      userClient.fetchIds()
+     userClient.fetchIds()
                 .enqueue(new Callback<StackApiResponse>() {
                     @Override
                     public void onResponse(Call<StackApiResponse> call, Response<StackApiResponse> response) {
@@ -42,6 +43,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Item> {
                         if(response.body() != null){
                             Log.d("OI" ,"firstget: "+response.body().has_next+" EVENTS: " + response.body().events);
 
+                            Log.d("dai",response.toString());
                             callback.onResult(response.body().events, null, 2);
 
                         }

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
+        android:id="@+id/purchase_menu"
         android:background="@color/colorPrimaryDark"
         app:elevation="10dp"
         app:menu="@menu/bottom_navigation_menu">

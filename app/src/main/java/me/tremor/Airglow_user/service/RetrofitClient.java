@@ -12,7 +12,7 @@ public class RetrofitClient {
 
     private RetrofitClient(){
         retrofit = new Retrofit.Builder()
-                .baseUrl(CIELO)
+                .baseUrl(TERRA)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

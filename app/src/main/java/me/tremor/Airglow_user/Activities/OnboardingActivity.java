@@ -1,15 +1,22 @@
 package me.tremor.Airglow_user.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import me.tremor.Airglow_user.MainActivity;
 import me.tremor.Airglow_user.R;
 import me.tremor.Airglow_user.UI.LoginFragment;
 import me.tremor.Airglow_user.service.NavigationHost;
 import me.tremor.Airglow_user.vault.VaultLocator;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Activity representing the Onboarding screens.
@@ -32,6 +39,7 @@ public class OnboardingActivity extends AppCompatActivity implements NavigationH
                     .commit();
         }
     }
+
 
    @Override
     public void navigateTo(Fragment fragment, boolean addToBackstack) {

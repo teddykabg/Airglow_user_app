@@ -1,7 +1,10 @@
 package me.tremor.Airglow_user;
 
+import me.tremor.Airglow_user.models.Buy;
+import me.tremor.Airglow_user.models.BuyTicket;
 import me.tremor.Airglow_user.models.IdEvent;
 import me.tremor.Airglow_user.models.Login;
+import me.tremor.Airglow_user.models.Profile;
 import me.tremor.Airglow_user.models.Registration_email;
 import me.tremor.Airglow_user.models.Registration_phone;
 import me.tremor.Airglow_user.models.ShortEvent;
@@ -37,10 +40,19 @@ public interface UserClient {
     Call<Item>getEventInfos(@Header("x-access-token")String token, @Path("id")String id);
     @GET("events/{id}/")
     Call<ShortEvent>getEventInfoss(@Header("x-access-token")String token, @Path("id")String id);
-    @GET("events/near/46/11/1")//Todo: changhe<User> with <Event>
-    Call<IdEvent>fetchIds3(@Header("x-access-token")String token);//Ids
+    //@GET("events/near/46/11/1")//Todo: changhe<User> with <Event>
+    //Call<StackApiResponse>fetchIds(@Header("x-access-token")String token);//Ids
     @GET("teddy/46/11/1")//Todo: changhe<User> with <Event>
     Call<StackApiResponse>fetchIds(/*@Header("x-access-token")String token,@Path("id")String id*/);//short infos;//Ids
+
+    @GET("profile/")
+    Call<Profile>getProfile(@Header("x-access-token")String token);
+
+    @GET("events/{id}")//Todo: changhe<User> with <Event>
+    Call<Item>fetchIds2(@Header("x-access-token")String token,@Path("id") int id);//Ids
+
+    @POST("ticket/buy/")
+    Call<ResponseBody>buyTicket(@Header("x-access-token")String token, @Body BuyTicket mTicket);
 
     @GET("answers")
     Call<StackApiResponse> getAnswers(

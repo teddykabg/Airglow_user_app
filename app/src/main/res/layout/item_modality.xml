@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:id="@+id/modality3"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/browser_actions_bg_grey"
+        android:layout_marginLeft="@dimen/mtrl_card_spacing"
+        android:layout_marginTop="@dimen/mtrl_card_spacing"
+        android:layout_marginRight="@dimen/mtrl_card_spacing"
+        app:cardCornerRadius="2dp"
+
+        android:minHeight="30dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="modalità3"
+            android:id="@+id/m3text"
+            android:textColor="#000"
+            android:textAlignment="center"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

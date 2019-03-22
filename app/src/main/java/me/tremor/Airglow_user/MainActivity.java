@@ -3,7 +3,10 @@ package me.tremor.Airglow_user;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
@@ -19,10 +22,16 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import me.tremor.Airglow_user.Activities.CarpoolingActivity;
+import me.tremor.Airglow_user.Activities.NewsFeedActivity;
+import me.tremor.Airglow_user.Activities.ProfileActivity;
 import me.tremor.Airglow_user.R;
 import me.tremor.Airglow_user.Item;
 import me.tremor.Airglow_user.ItemAdapter;
 import me.tremor.Airglow_user.ItemViewModel;
+import me.tremor.Airglow_user.adapters.EventAdapter;
+import me.tremor.Airglow_user.adapters.ShortViewModel;
+import me.tremor.Airglow_user.models.ShortEvent;
 
 /**
  * Activity representing the Main activity.
@@ -41,10 +50,41 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(RecyclerView.VERTICAL);
         mRecycler.setLayoutManager(manager);
+        mMenu = findViewById(R.id.my_menu);
+        MenuItem mFocused =mMenu.getMenu().getItem(0);
+        mFocused.setChecked(true);
 
-        mMenu= findViewById(R.id.my_menu);
+       mMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+           @Override
+           public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        /*ShortViewModel mModel = ViewModelProviders.of(this).get(ShortViewModel.class);
+               switch (menuItem.getItemId()){
+                   case R.id.nav_car:
+                       Intent newIntent0 = new Intent(MainActivity.this, CarpoolingActivity.class);
+                       startActivity(newIntent0);
+                       overridePendingTransition(0, 0);
+                       finish();
+                       break;
+                   case R.id.nav_home:
+                      break;
+                   case R.id.nav_news:
+                       Intent newIntent2 = new Intent(MainActivity.this, NewsFeedActivity.class);
+                       startActivity(newIntent2);
+                       overridePendingTransition(0, 0);
+                       finish();
+                       break;
+                   case  R.id.nav_profile:
+                       Intent newIntent = new Intent(MainActivity.this, ProfileActivity.class);
+                       startActivity(newIntent);
+                       overridePendingTransition(0, 0);
+                       finish();
+                       break;
+               }
+               return false;
+           }
+       });
+
+       /* ShortViewModel mModel = ViewModelProviders.of(this).get(ShortViewModel.class);
         final EventAdapter adapter = new EventAdapter(this);
         mModel.getEventPagedList().observe(this, new Observer<PagedList<ShortEvent>>() {
             @Override
@@ -54,9 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("Mai","Mai qui");
             }
-        });
-*/
-        ItemViewModel itemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
+        });*/
+
+       ItemViewModel itemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
         final ItemAdapter adapter = new ItemAdapter(this);
 
         itemViewModel.getItemPagedList().observe(this, new Observer<PagedList<Item>>() {
@@ -67,23 +107,9 @@ public class MainActivity extends AppCompatActivity {
         });
         mRecycler.setAdapter(adapter);
 
-      /* private BottomNavigationView.OnNavigationItemSelectedListener navListener =new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment mSelected = null;
-
-                switch (menuItem.getItemId()){
-                    case R.id.nav_car:
-                        mSelected= new CarPoolingActivity();
-                        break;
-                    case R.id.nav_home:
-                        mSelected= new MainActivity();
-                        ecc
-                }
-                return false;
-            }
-        }*/
 
     }
+
+
 
 }
